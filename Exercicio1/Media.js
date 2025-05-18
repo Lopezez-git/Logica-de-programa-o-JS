@@ -1,5 +1,6 @@
 
 
+
 function Calcular_media() {
 
     var Nome = document.getElementById("Nome").value;
