@@ -1,38 +1,77 @@
-/**Pedro comprou um saco de ração com peso em Kg.
- *  Ele possui dois gatos,para os quais fornece a quantidade de ração em gramas.
- *  A quantidade diária de ração fornecida para cada gato é sempre a mesma.
- *  Crie um algoritmo que receba o peso do saco de ração e a quantidade de ração fornecida para cada
- *  gato.
- *  Calcule e mostre quanto restará de ração no saco após cinco dias.  */
-
-const { createElement } = require("react");
-
-function calculo(){
-
-    var Nome = document.getElementById("nome").value;
-
-    var inputs = document.getElementById("respostas");
-
-    var novo_paragrafo_racao = document.createElement("p");
-
-    inputs.appendChild(novo_paragrafo_racao);
-
-    novo_paragrafo_racao.innerHTML = `Qual é a quantidade de ração desejada? `;
-
-    //criando um novo input
-
-    var novo_input_racao = document.createElement("input");
-
-    novo_paragrafo_racao.appendChild(novo_input_racao);
-
-    //criando um novo botão para esse input
-
-    var novo_botao_racao = document.createElement("button");
-
-    novo_botao_racao.innerHTML = "Start";
-
-    novo_paragrafo_racao.appendChild(novo_botao_racao);
-}
+function informacoes() {
 
 
+            //pegando o nome;
+
+            var Name = document.getElementById("nome").value;
+
+            if (Name) {
+
+                //Criando objeto pai
+                var Div_pai = document.getElementById("saida");
+
+                //Criando objeto filho
+
+                let lethicia = document.createElement("p");
+
+                //Mudando o HTML do paragrafo filho
+
+                lethicia.innerHTML = `Quanto de ração o ${Name} vai querer? `;
+
+
+                //Criando novo input
+                var novo_input_racao = document.createElement("input");
+
+                lethicia.appendChild(novo_input_racao);
+
+                novo_input_racao.type = "number";
+
+                //Criando o botão
+
+                var novo_botao_racao = document.createElement("button");
+
+                lethicia.appendChild(novo_botao_racao);
+
+                novo_botao_racao.innerHTML = "Start";
+
+                novo_botao_racao.onclick = function () {
+
+                    calculo(novo_input_racao.value, Name)
+                };
+
+                //Falando que a div recebe como filho
+
+                Div_pai.appendChild(lethicia);
+
+            }
+
+        }
+
+        //Função para calcular o preço da ração
+
+        function calculo(Quantidade_kg, Name) {
+
+            // Verificando se eu recebi a quantidade em kg, senão acontece um bug;
+
+            if (Quantidade_kg) {
+
+                document.getElementById("erro_message").innerHTML = "";
+
+                var preco_by_kg = 20;
+
+                var preco_final = Quantidade_kg * preco_by_kg;
+
+                var Div_pai = document.getElementById("saida");
+
+                var novo_paragrafo = document.createElement("p");
+
+                novo_paragrafo.innerHTML = `O preço por quilo é R$${preco_by_kg} e a quantidade de quilos desejada pelo ${Name} é ${Quantidade_kg}kg <br> Preço total: R$${preco_final}`;
+
+                Div_pai.appendChild(novo_paragrafo);
+            }
+            else {
+
+                document.getElementById("erro_message").innerHTML = "<p style = 'color: red;'>Preencha todos os dados</p>";
+            }
+        }
 
